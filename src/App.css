@@ -1,3 +1,11 @@
 .App {
   text-align: center;
 }
+.FourthComponent {
+  font-size: larger;
+}
+
+.SecondComponent {
+  color: brown;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}

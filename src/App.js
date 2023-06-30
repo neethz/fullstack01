@@ -16,20 +16,20 @@ function App() {
 
 function FirstComponent(){
   return (
-    <div>First component</div>
+    <div className='FirstComponent'>First component</div>
   );
 }
 
 function SecondComponent(){
   return (
-    <div>Second component</div>
+    <div className='SecondComponent'>Second component</div>
   );
 }
 
 class ThirdComponent extends Component {
   render(){
     return (
-    <div>Third component</div>
+    <div className='ThirdComponent'>Third component</div>
     );
   };
 }
@@ -37,7 +37,7 @@ class ThirdComponent extends Component {
 class FourthComponent extends Component {
   render(){
     return (
-    <div>Fourth Component</div>
+    <div className='FourthComponent'>Fourth Component</div>
     );
   };
 }
