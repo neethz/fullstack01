@@ -1,4 +1,4 @@
-.increment {
+.counterOps {
     background-color: green;
     padding: 10px;
     margin: 10px;
@@ -6,8 +6,13 @@
     font-size: 20px;
     border-color: yellow;
     border-style: solid;
-    border-radius: 10px
+    border-radius: 10px;
+    width: 50px;
 
+}
+
+.decrement {
+    background-color: red;
 }
 
 .count {
@@ -18,11 +23,6 @@
 
 .reset {
     background-color: chocolate;
-    padding: 10px;
-    margin: 10px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 20px;
     border-color: black;
-    border-style: solid;
-    border-radius: 10px
+    width: 100px;
 }
