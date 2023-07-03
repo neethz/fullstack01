@@ -36,19 +36,13 @@ export default function Counter(){
 
 function CounterButton({by, incrementCounter , decrementCounter}){
 
-    function incrementFunc(){
-        incrementCounter(by)
-    }
-
-    function decrementFunc(){
-        decrementCounter(by)
-    }
+    
 
     return (
         <div className="counter">
             <div>
-                <button className="counterOps increment" onClick={incrementFunc}>+{by}</button>
-                <button className="counterOps decrement" onClick={decrementFunc}>-{by}</button>
+                <button className="counterOps increment" onClick={() => incrementCounter(by)}>+{by}</button>
+                <button className="counterOps decrement" onClick={() => decrementCounter(by)}>-{by}</button>
             </div>
             <div>
             {/* <button className='counterOps reset' onClick={reset}>Reset</button> */}
