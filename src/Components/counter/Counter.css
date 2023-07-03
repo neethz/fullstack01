@@ -1,12 +1,28 @@
 .increment {
-    background-color: brown;
+    background-color: green;
     padding: 10px;
     margin: 10px;
-    border-color: aquamarine;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    border-color: yellow;
+    border-style: solid;
+    border-radius: 10px
 
 }
 
 .count {
     font-size: 40px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 200;
+}
+
+.reset {
+    background-color: chocolate;
+    padding: 10px;
+    margin: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 10px
 }
