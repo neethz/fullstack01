@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import './Counter.css'
+import {PropTypes} from 'prop-types'
 export default function Counter({by}){
 
     const [count, setCount] = useState(0);
@@ -11,7 +12,10 @@ export default function Counter({by}){
     }
 
     function decrementValue(){
-        setCount(count - by);
+        if((count - by) <0)
+            setCount(0);
+        else
+            setCount(count - by);
 
     }
 
@@ -31,4 +35,13 @@ export default function Counter({by}){
             </div>
         </div>
     )
+}
+
+Counter.propTypes = {
+    by : PropTypes.number
+
+}
+
+Counter.defaultProps = {
+    by : 1
 }
