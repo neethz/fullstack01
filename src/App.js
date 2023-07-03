@@ -6,9 +6,7 @@ function App() {
   return (
     <div className="App">
       Counter app
-      <Counter by={1}></Counter>
-      <Counter by={2}></Counter>
-      <Counter by={3}></Counter>
+      <Counter/>
     </div>
     
   );
