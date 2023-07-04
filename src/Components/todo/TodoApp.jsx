@@ -15,14 +15,17 @@ function Login(){
     const [userName, setUserName] = useState("Neethu");
     const [password, setPassword] = useState("");
 
+    const [showSuccess, setShowSuccess] = useState(false);
+    const [showError, setShowError] = useState(false);
+
     function handleSubmit(){
         if(userName==='Neethu' && password==='1'){
-            document.querySelector('.AuthSuccess').style.display = 'block';
-            document.querySelector('.AuthFailure').style.display='none';
+            setShowSuccess(true);
+            setShowError(false);
 
         }else{
-            document.querySelector('.AuthSuccess').style.display = 'none';
-            document.querySelector('.AuthFailure').style.display='block';
+            setShowSuccess(false);
+            setShowError(true);
         }
     }
 
@@ -38,8 +41,29 @@ function Login(){
                 <input type="password" name="password" value={password} onChange={(event) => setPassword(event.target.value)}/>
             </div>
             <button type="button" name="loginBtn" onClick={handleSubmit}>Login</button>
-            <div className='AuthSuccess' style={{display:"none"}}>Authentication Successful</div>
-            <div className='AuthFailure' style={{display:"none"}}>Authentication Failed</div>
+            <SuccessMessage showSuccess={showSuccess}/>
+            <ErrorMessage showError={showError}/>
+            
         </div>
     )
+}
+
+function SuccessMessage({showSuccess}){
+    if(showSuccess){
+        return(
+            <div className='AuthSuccess'>Authentication Successful</div>
+        )
+    }
+    return null;
+
+}
+
+function ErrorMessage({showError}){
+    if(showError){
+        return(
+            <div className='AuthFailure'>Authentication Failed</div>
+        )
+    }
+    return null;
+
 }
