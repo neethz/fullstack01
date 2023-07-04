@@ -41,29 +41,37 @@ function Login(){
                 <input type="password" name="password" value={password} onChange={(event) => setPassword(event.target.value)}/>
             </div>
             <button type="button" name="loginBtn" onClick={handleSubmit}>Login</button>
-            <SuccessMessage showSuccess={showSuccess}/>
-            <ErrorMessage showError={showError}/>
+            {showSuccess && <div className='AuthSuccess'>Authentication Successful</div>}
+            {showError && <div className='AuthFailure'>Authentication Failed</div>}
             
         </div>
     )
 }
 
-function SuccessMessage({showSuccess}){
-    if(showSuccess){
-        return(
-            <div className='AuthSuccess'>Authentication Successful</div>
-        )
-    }
-    return null;
+// function SuccessMessage({showSuccess}){
+//     if(showSuccess){
+//         return(
+//             <div className='AuthSuccess'>Authentication Successful</div>
+//         )
+//     }
+//     return null;
 
-}
+// }
 
-function ErrorMessage({showError}){
-    if(showError){
-        return(
-            <div className='AuthFailure'>Authentication Failed</div>
-        )
-    }
-    return null;
+// function ErrorMessage({showError}){
+//     if(showError){
+//         return(
+//             <div className='AuthFailure'>Authentication Failed</div>
+//         )
+//     }
+//     return null;
 
+// }
+
+function Welcome(){
+    return (
+        <div className='Welcome'>
+            Welcome
+        </div>
+    )
 }
