@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import './TodoApp.css'
-import {BrowserRouter, Routes, Route, useNavigate, useParams} from 'react-router-dom'
+import {BrowserRouter, Routes, Route, useNavigate, useParams, Link} from 'react-router-dom'
 
 export default function TodoApp(){
     return (
         <div className="TodoApp">
+            <Header/>
             <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<Login/>}/>
@@ -14,6 +15,7 @@ export default function TodoApp(){
                     <Route path='*' element={<Error/>}/>
                 </Routes>
             </BrowserRouter>
+            <Footer/>
 
         </div>
     )
@@ -42,7 +44,7 @@ function Login(){
     }
 
     return(
-        <div className="Login">
+        <div className="container Login">
             <h1 name="title">Login to your account</h1>
             <div>
                 <label>User Name : </label>
@@ -85,6 +87,9 @@ function Welcome(){
     return (
         <div className='Welcome'>
             <h1>Welcome {username}</h1>
+            <div>
+                <Link to='/todos'>My Todos</Link>
+            </div>
             
         </div>
     )
@@ -100,17 +105,21 @@ function Error(){
 }
 
 function Todos(){
-    const todos= [  {id:1, description:'Learn AWS'},
-                    {id:2, description:'Learn GCP'},
-                    {id:3, description:'Learn BE'}]
+    const today = new Date()
+    const targetDate = new Date(today.getFullYear()+1, today.getMonth(), today.getDay())
+    const todos= [  {id:1, description:'Learn AWS', done:false, targetDate: targetDate},
+                    {id:2, description:'Learn GCP', done:false, targetDate: targetDate},
+                    {id:3, description:'Learn BE', done:false, targetDate: targetDate}]
     return (
-        <div className='Todos'>
+        <div className='container Todos'>
             <h1>Your todos are listed below!</h1>
-            <table>
+            <table className='table'>
                 <thead>
                         <tr>
                             <td>Id</td>
                             <td>Description</td>
+                            <td>Done?</td>
+                            <td>TargetDate</td>
                         </tr>
                 </thead>
                 <tbody>
@@ -119,6 +128,8 @@ function Todos(){
                                 <tr key={todo.id}>
                                     <td>{todo.id}</td>
                                     <td>{todo.description}</td>
+                                    <td>{todo.done.toString()}</td>
+                                    <td>{todo.targetDate.toDateString()}</td>
                                 </tr>
                         ))
                     }
@@ -126,5 +137,21 @@ function Todos(){
             </table>
 
         </div>
+    )
+}
+
+function Header(){
+    return(
+        <div className='Header'> Header
+        <hr></hr>
+        </div>
+    )
+}
+
+function Footer(){
+    return(
+        <div className='Footer'>
+            <hr></hr>
+            Footer</div>
     )
 }
