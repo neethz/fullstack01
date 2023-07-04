@@ -1,10 +1,18 @@
-import { useState } from 'react';
-import './TodoApp.css';
+import { useState } from 'react'
+import './TodoApp.css'
+import {BrowserRouter, Routes, Route, useNavigate} from 'react-router-dom'
 
 export default function TodoApp(){
     return (
         <div className="TodoApp">
-            <Login/>
+            <BrowserRouter>
+                <Routes>
+                    <Route path='/' element={<Login/>}/>
+                    <Route path='/login' element={<Login/>}/>
+                    <Route path='/welcome' element={<Welcome/>}/> 
+                    <Route path='*' element={<Error/>}/>
+                </Routes>
+            </BrowserRouter>
 
         </div>
     )
@@ -18,10 +26,13 @@ function Login(){
     const [showSuccess, setShowSuccess] = useState(false);
     const [showError, setShowError] = useState(false);
 
+    const navigation = useNavigate();
+
     function handleSubmit(){
         if(userName==='Neethu' && password==='1'){
             setShowSuccess(true);
             setShowError(false);
+            navigation('/welcome')
 
         }else{
             setShowSuccess(false);
@@ -31,7 +42,7 @@ function Login(){
 
     return(
         <div className="Login">
-            <span name="title">Login to your account</span>
+            <h1 name="title">Login to your account</h1>
             <div>
                 <label>User Name : </label>
                 <input type="text" name="username" value={userName} onChange={(event) => setUserName(event.target.value)}/>
@@ -71,7 +82,17 @@ function Login(){
 function Welcome(){
     return (
         <div className='Welcome'>
-            Welcome
+            <h1>Welcome</h1>
+            
+        </div>
+    )
+}
+
+function Error(){
+    return(
+        <div className='Error'>
+            <h1>Sorry for the inconvenience caused. </h1>
+            <div>Try logging into your account <a href='/login' value='here'>here</a></div>
         </div>
     )
 }
