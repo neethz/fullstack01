@@ -10,6 +10,7 @@ export default function TodoApp(){
                     <Route path='/' element={<Login/>}/>
                     <Route path='/login' element={<Login/>}/>
                     <Route path='/welcome/:username' element={<Welcome/>}/> 
+                    <Route path='/todos' element={<Todos/>}/>
                     <Route path='*' element={<Error/>}/>
                 </Routes>
             </BrowserRouter>
@@ -94,6 +95,36 @@ function Error(){
         <div className='Error'>
             <h1>Sorry for the inconvenience caused. </h1>
             <div>Try logging into your account <a href='/login' value='here'>here</a></div>
+        </div>
+    )
+}
+
+function Todos(){
+    const todos= [  {id:1, description:'Learn AWS'},
+                    {id:2, description:'Learn GCP'},
+                    {id:3, description:'Learn BE'}]
+    return (
+        <div className='Todos'>
+            <h1>Your todos are listed below!</h1>
+            <table>
+                <thead>
+                        <tr>
+                            <td>Id</td>
+                            <td>Description</td>
+                        </tr>
+                </thead>
+                <tbody>
+                    {
+                        todos.map(todo => (
+                                <tr key={todo.id}>
+                                    <td>{todo.id}</td>
+                                    <td>{todo.description}</td>
+                                </tr>
+                        ))
+                    }
+                </tbody>
+            </table>
+
         </div>
     )
 }
