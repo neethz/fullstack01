@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './TodoApp.css'
-import {BrowserRouter, Routes, Route, useNavigate} from 'react-router-dom'
+import {BrowserRouter, Routes, Route, useNavigate, useParams} from 'react-router-dom'
 
 export default function TodoApp(){
     return (
@@ -9,7 +9,7 @@ export default function TodoApp(){
                 <Routes>
                     <Route path='/' element={<Login/>}/>
                     <Route path='/login' element={<Login/>}/>
-                    <Route path='/welcome' element={<Welcome/>}/> 
+                    <Route path='/welcome/:username' element={<Welcome/>}/> 
                     <Route path='*' element={<Error/>}/>
                 </Routes>
             </BrowserRouter>
@@ -32,7 +32,7 @@ function Login(){
         if(userName==='Neethu' && password==='1'){
             setShowSuccess(true);
             setShowError(false);
-            navigation('/welcome')
+            navigation(`/welcome/${userName}`)
 
         }else{
             setShowSuccess(false);
@@ -80,9 +80,10 @@ function Login(){
 // }
 
 function Welcome(){
+    const {username} = useParams()
     return (
         <div className='Welcome'>
-            <h1>Welcome</h1>
+            <h1>Welcome {username}</h1>
             
         </div>
     )
