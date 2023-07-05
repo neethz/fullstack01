@@ -1,6 +1,6 @@
-import axios from "axios"
 import { useState } from "react"
 import { useParams, Link } from "react-router-dom"
+import { retrieveHelloWorld, retrieveHelloWorldBean } from "./api/HelloWorldApiService.js"
 import { useAuth } from "./security/AuthContext"
 
 function Welcome() {
@@ -12,7 +12,7 @@ function Welcome() {
     console.log(authContext.number)
 
     function helloF(){
-        axios.get("http://localhost:8080/hello-world")
+        retrieveHelloWorld()
         .then((response) => {
             console.log(response)
             setMessage(response.data)
@@ -23,7 +23,7 @@ function Welcome() {
     }
 
     function helloB(){
-        axios.get("http://localhost:8080/hello-world-bean")
+        retrieveHelloWorldBean()
         .then ( (response) => {
             setMessage(response.data.message)
             console.log(response)
