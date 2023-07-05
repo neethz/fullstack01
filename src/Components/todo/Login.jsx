@@ -6,21 +6,16 @@ function Login() {
     const [userName, setUserName] = useState("Neethu");
     const [password, setPassword] = useState("");
 
-    const [showSuccess, setShowSuccess] = useState(false);
     const [showError, setShowError] = useState(false);
 
     const navigation = useNavigate();
     const auth = useAuth()
 
     function handleSubmit() {
-        if (userName === 'Neethu' && password === '1') {
-            auth.setAuthenticated(true)
-            setShowSuccess(true);
-            setShowError(false);
+        if (auth.checkAuthentication(userName, password)) {
             navigation(`/welcome/${userName}`)
 
         } else {
-            setShowSuccess(false);
             setShowError(true);
         }
     }
@@ -37,8 +32,7 @@ function Login() {
                 <input type="password" name="password" value={password} onChange={(event) => setPassword(event.target.value)} />
             </div>
             <button type="button" name="loginBtn" onClick={handleSubmit}>Login</button>
-            {showSuccess && <div className='AuthSuccess'>Authentication Successful</div>}
-            {showError && <div className='AuthFailure'>Authentication Failed</div>}
+            {showError && <div className='AuthFailure  text-danger'>Authentication Failed</div>}
 
         </div>
     )

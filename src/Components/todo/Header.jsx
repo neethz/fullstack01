@@ -28,7 +28,7 @@ export default function Header() {
                             </li>
                             <li className="nav-item fs-5">
                                 {auth.isAuthenticated &&
-                                    <Link className="nav-link" to="/logout" onClick={() => auth.setAuthenticated(false)}>Logout</Link>}
+                                    <Link className="nav-link" to="/logout" onClick={() => auth.logout()}>Logout</Link>}
                             </li>
                         </ul>
                     </nav>
