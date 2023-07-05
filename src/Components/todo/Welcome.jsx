@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useParams, Link } from "react-router-dom"
-import { retrieveHelloWorld, retrieveHelloWorldBean } from "./api/HelloWorldApiService.js"
+import { retrieveHelloWorld, retrieveHelloWorldBean, retrieveHelloWorldPath } from "./api/HelloWorldApiService.js"
 import { useAuth } from "./security/AuthContext"
 
 function Welcome() {
@@ -31,6 +31,15 @@ function Welcome() {
         .catch((error) => console.log(error))
         .finally(() => console.log('Finally v2'))
     }
+
+    function helloC(){
+        retrieveHelloWorldPath(username)
+        .then ((response) => {
+            setMessage(response.data.message)
+        })
+        .catch((error) => console.log(error))
+        .finally(() => console.log('Finally v3'))
+    }
     return (
         <div className='Welcome'>
             <h1>Welcome {username}</h1>
@@ -40,6 +49,7 @@ function Welcome() {
             <div>
                <button className="btn btn-success m-5" onClick={helloF}>Surprise</button>
                <button className="btn btn-primary m-5" onClick={helloB}>Suprise Bean</button>
+               <button className="btn btn-warning m-5" onClick={helloC}>Double Suprise Bean</button>
             </div>
             <div className="text text-green">{message}</div>
 
