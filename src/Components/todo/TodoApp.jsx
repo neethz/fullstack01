@@ -8,6 +8,7 @@ import Login from './Login'
 import Logout from './Logout'
 import Welcome from './Welcome'
 import AuthProvider from './security/AuthContext'
+import Timer from './Timer'
 
 export default function TodoApp() {
     return (
@@ -21,6 +22,7 @@ export default function TodoApp() {
                         <Route path='/welcome/:username' element={<Welcome />} />
                         <Route path='/todos' element={<ListTodos />} />
                         <Route path='/logout' element={<Logout />} />
+                        <Route path='/timer' element={<Timer/>} />
                         <Route path='*' element={<Error />} />
                     </Routes>
                     <Footer />
