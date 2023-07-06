@@ -1,4 +1,4 @@
-import { Field, Formik, Form } from "formik"
+import { Field, Formik, Form, ErrorMessage } from "formik"
 import { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { getTodoApi } from "./api/TodoApiService"
@@ -28,6 +28,17 @@ export default function UpdateTodo(){
         console.log(values)
     }
 
+    function onValidate(values){
+        let errors={}
+        if(values.description.length <5){
+            errors.description='Description should be atleast of 5 characters'
+        }
+        if(values.targetDate==null){
+            errors.targetDate='Enter valid target date'
+        }
+        return errors
+    }
+
     useEffect(() =>{
         getTodo(id)
     },[id])
@@ -38,10 +49,25 @@ export default function UpdateTodo(){
             <Formik initialValues={{description, targetDate}}
             enableReinitialize={true}
             onSubmit ={onSubmit}
+            validate={onValidate}
+            validateOnChange = {false}
+            validateOnBlur ={false}
             >
                 {
                     (props) => (
                         <Form>
+                            <ErrorMessage
+                                name="description"
+                                component="div"
+                                className= "alert alert-warning"
+                        
+                            />
+                            <ErrorMessage
+                                name="targetDate"
+                                component="div"
+                                className= "alert alert-warning"
+                            
+                            />
                             <fieldset className="form-group">
                                 <label>Description</label>
                                 <Field type="text" className="form-control" name="description" />
