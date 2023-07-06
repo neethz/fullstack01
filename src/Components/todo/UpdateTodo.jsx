@@ -1,3 +1,4 @@
+import { Field, Formik, Form } from "formik"
 import { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { getTodoApi } from "./api/TodoApiService"
@@ -17,11 +18,14 @@ export default function UpdateTodo(){
     function getTodo(id){
         getTodoApi(auth.username, id)
         .then((response) => {
-            setTodo(response.data)
             setDescription(response.data.description)
             setTargetDate(response.data.targetDate)})
         .catch((error) => console.log(error))
         .finally(() => console.log('Finally get Todo'))
+    }
+
+    function onSubmit(values){
+        console.log(values)
     }
 
     useEffect(() =>{
@@ -31,14 +35,30 @@ export default function UpdateTodo(){
     return(
         <div className="container">
             <h2>Update your todo</h2>
-            <form>
-                <div>
-                Description : <input  type="text" name="description" value={description} className="m-5" onChange={(event)=> setDescription(event.target.value)}/>
-                </div>
-                <div>
-                TargetDate : <input type="date" name="targetDate" value={targetDate} className="m-5" onChange={(event) => setTargetDate(event.target.value)} />
-                </div>
-            </form>
+            <Formik initialValues={{description, targetDate}}
+            enableReinitialize={true}
+            onSubmit ={onSubmit}
+            >
+                {
+                    (props) => (
+                        <Form>
+                            <fieldset className="form-group">
+                                <label>Description</label>
+                                <Field type="text" className="form-control" name="description" />
+                            </fieldset>
+                            <fieldset className="form-group">
+                                <label>Target Date</label>
+                                <Field type="date" className="form-control" name="targetDate" />
+                            </fieldset>
+                            <div>
+                                <button type="submit" className="btn btn-success m-5" onClick={onSubmit}>Save</button>
+                            </div>
+                        </Form>
+                    )
+                }
+                
+            </Formik>
+            
 
 
         </div>
