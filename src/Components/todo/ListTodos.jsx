@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Navigate, useNavigate } from "react-router-dom"
 import { deleteTodoApi, getUserTodosApi } from "./api/TodoApiService"
 import { useAuth } from "./security/AuthContext"
 
@@ -8,6 +9,7 @@ export default function Todos() {
     const auth = useAuth()
     const  [todos, setTodos] = useState([])
     const [message, setMessage] = useState(null)
+    const navigation = useNavigate()
     
     //Below is used to call the function on load without any dependencies. - Fetch data from API when the Todos component is mounted
     useEffect (
@@ -46,6 +48,19 @@ export default function Todos() {
         .finally(() => console.log("Finally deleteTodo"))
     }
 
+    function updateTodoById(id){
+
+        navigation(`/todo/${id}`)
+        // updateTodoApi(id)
+        // .then(
+        //     () => {
+                
+        //     }
+        // )
+        // .catch((error) => console.log(error))
+        // .finally(() => console.log("Finally deleteTodo"))
+    }
+
     return (
         <div className='container Todos'>
             <h1>Your todos are listed below!</h1>
@@ -58,6 +73,7 @@ export default function Todos() {
                         <th>Done?</th>
                         <th>TargetDate</th>
                         <th>Delete</th>
+                        <th>Update</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -70,6 +86,11 @@ export default function Todos() {
                                 <td><button className="btn btn-warning" onClick={
                                                                     () => {
                                                                         deleteTodoById(todo.id)}}  >Delete</button></td>
+                                <td><button className="btn btn-success" onClick={
+                                ()=>{
+                                    updateTodoById(todo.id)
+                                }
+                                }>Update</button></td>
                             </tr>
                         ))
                     }

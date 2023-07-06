@@ -10,6 +10,7 @@ import Welcome from './Welcome'
 import AuthProvider from './security/AuthContext'
 import Timer from './Timer'
 import AuthenticatedRoute from './AuthenticatedRoute'
+import UpdateTodo from './UpdateTodo'
 
 export default function TodoApp() {
     return (
@@ -34,6 +35,11 @@ export default function TodoApp() {
                                 <Logout />
                             </AuthenticatedRoute>} />
                         <Route path='/timer' element={<Timer />} />
+                        <Route path='/todo/:id' element={
+                            <AuthenticatedRoute>
+                                <UpdateTodo />
+                            </AuthenticatedRoute>
+                        } />
                         <Route path='*' element={<Error />} />
                     </Routes>
                     <Footer />
