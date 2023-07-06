@@ -4,12 +4,12 @@ import { retrieveHelloWorld, retrieveHelloWorldBean, retrieveHelloWorldPath } fr
 import { useAuth } from "./security/AuthContext"
 
 function Welcome() {
-    const { username } = useParams()
+    // const { username } = useParams()
     const authContext = useAuth()
     const [message, setMessage] = useState(null)
 
 
-    console.log(authContext.number)
+    // console.log(authContext.number)
 
     function helloF(){
         retrieveHelloWorld()
@@ -33,7 +33,7 @@ function Welcome() {
     }
 
     function helloC(){
-        retrieveHelloWorldPath(username)
+        retrieveHelloWorldPath(authContext.username)
         .then ((response) => {
             setMessage(response.data.message)
         })
@@ -42,7 +42,7 @@ function Welcome() {
     }
     return (
         <div className='Welcome'>
-            <h1>Welcome {username}</h1>
+            <h1>Welcome {authContext.username}</h1>
             <div>
                 <Link to='/todos'>My Todos</Link>
             </div>

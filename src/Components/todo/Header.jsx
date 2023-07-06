@@ -13,7 +13,7 @@ export default function Header() {
                             <ul className="navbar-nav">
                                 <li className="nav-item fs-5">
                                     {auth.isAuthenticated &&
-                                        <Link className="nav-link" to="/welcome/Hero">Home</Link>}
+                                        <Link className="nav-link" to="/welcome">Home</Link>}
                                 </li>
                                 <li className="nav-item fs-5">
                                     {auth.isAuthenticated &&

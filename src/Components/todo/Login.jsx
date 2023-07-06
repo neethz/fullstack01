@@ -13,7 +13,7 @@ function Login() {
 
     function handleSubmit() {
         if (auth.checkAuthentication(userName, password)) {
-            navigation(`/welcome/${userName}`)
+            navigation(`/welcome`)
 
         } else {
             setShowError(true);

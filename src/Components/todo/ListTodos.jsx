@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { deleteTodo, getUserTodos } from "./api/TodoApiService"
+import { deleteTodoApi, getUserTodosApi } from "./api/TodoApiService"
 import { useAuth } from "./security/AuthContext"
 
 export default function Todos() {
@@ -24,7 +24,7 @@ export default function Todos() {
    
 
     function getTodos(){
-        getUserTodos(auth.username)
+        getUserTodosApi(auth.username)
         .then((response) => {
             console.log(response.data)
             setTodos(response.data)
@@ -35,7 +35,7 @@ export default function Todos() {
     }
 
     function deleteTodoById(id){
-        deleteTodo(auth.username,id)
+        deleteTodoApi(auth.username,id)
         .then(
             () => {
                 setMessage(`Deleted todo with id = ${id}`)

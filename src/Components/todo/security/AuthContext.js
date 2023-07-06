@@ -6,12 +6,12 @@ export const useAuth = () => useContext(AuthContext)
 export default function AuthProvider( { children } ){
 
     const [isAuthenticated, setAuthenticated] = useState(false)
-    const [username, setUsername] = useState('')
+    const [username, setUsername] = useState(null)
 
     function checkAuthentication(userName, password){
-        if (userName === 'Neethu' && password === '1') {
+        if (password === '1') {
             setAuthenticated(true)
-            setUsername('Neethu')
+            setUsername(userName)
             return true
         } else {
             setAuthenticated(false)
