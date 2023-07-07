@@ -4,15 +4,16 @@ import { useAuth } from "./security/AuthContext";
 function Login() {
 
     const [userName, setUserName] = useState("Neethu");
-    const [password, setPassword] = useState("");
+    const [password, setPassword] = useState("1");
 
     const [showError, setShowError] = useState(false);
 
     const navigation = useNavigate();
     const auth = useAuth()
 
-    function handleSubmit() {
-        if (auth.checkAuthentication(userName, password)) {
+     async function handleSubmit() {
+        if (await auth.checkAuthentication(userName, password)) {
+            console.log('True it is')
             navigation(`/welcome`)
 
         } else {

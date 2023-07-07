@@ -15,3 +15,8 @@ export const retrieveHelloWorldPath = (username) => apiClient.get(`http://localh
 
 
 
+export const executeBasicAuthenticationService = (token)=> apiClient.get(`/basic-auth`, {
+    headers:{
+        Authorization: token
+    }
+})
