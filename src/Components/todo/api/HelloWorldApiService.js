@@ -1,8 +1,6 @@
-import axios from "axios";
+import { useAuth } from "../security/AuthContext";
+import { apiClient } from "./ApiClient";
 
-const apiClient = axios.create({
-    baseURL: 'http://localhost:8080'
-})
 
 export const retrieveHelloWorld = () => apiClient.get('http://localhost:8080/hello-world',
     {
