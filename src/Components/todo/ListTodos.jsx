@@ -82,7 +82,7 @@ export default function Todos() {
                             <tr key={todo.id}>
                                 <td>{todo.description}</td>
                                 <td>{todo.done.toString()}</td>
-                                <td>{todo.targetDate.toString()}</td>
+                                <td>{todo.targetDate}</td>
                                 <td><button className="btn btn-warning" onClick={
                                                                     () => {
                                                                         deleteTodoById(todo.id)}}  >Delete</button></td>
