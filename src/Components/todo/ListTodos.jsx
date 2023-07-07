@@ -51,14 +51,10 @@ export default function Todos() {
     function updateTodoById(id){
 
         navigation(`/todo/${id}`)
-        // updateTodoApi(id)
-        // .then(
-        //     () => {
-                
-        //     }
-        // )
-        // .catch((error) => console.log(error))
-        // .finally(() => console.log("Finally deleteTodo"))
+    }
+
+    function createTodo(){
+        navigation(`/todo/-1`)
     }
 
     return (
@@ -86,7 +82,7 @@ export default function Todos() {
                                 <td><button className="btn btn-warning" onClick={
                                                                     () => {
                                                                         deleteTodoById(todo.id)}}  >Delete</button></td>
-                                <td><button className="btn btn-success" onClick={
+                                <td><button className="btn btn-primary" onClick={
                                 ()=>{
                                     updateTodoById(todo.id)
                                 }
@@ -96,6 +92,7 @@ export default function Todos() {
                     }
                 </tbody>
             </table>
+            <button className="btn btn-success" onClick={createTodo}>Add new Todo</button>
 
         </div>
     )

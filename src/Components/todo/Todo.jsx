@@ -1,7 +1,7 @@
 
 
 import { useNavigate, useParams } from "react-router-dom"
-import { getTodoApi, updateTodoApi } from "./api/TodoApiService"
+import { getTodoApi, updateTodoApi, createTodoApi } from "./api/TodoApiService"
 import { useAuth } from "./security/AuthContext"
 import { useEffect, useState } from "react"
 import { Formik, Form, Field, ErrorMessage } from "formik"
@@ -24,13 +24,14 @@ function TodoComponent() {
  
     function retrieveTodo() {
  
-       
+        if(id != -1){
             getTodoApi(username, id)
             .then( (response) => {
                 setDescription(response.data.description)
                 setTargetDate(response.data.targetDate)
             })
             .catch( (error) => console.log(error) )
+        }
         
     }
  
@@ -43,13 +44,20 @@ function TodoComponent() {
             targetDate: values.targetDate,
             done: false
         }
- 
-    
+        if(id == -1){
+            createTodoApi(username, todo)
+            .then(() => {
+                navigate(`/todos`)
+            })
+            .catch((error)=> console.log(error))
+            .finally(() => console.log('Finally createApi'))
+        }else {
             updateTodoApi(username, id, todo)
             .then( (response) => {
                 navigate('/todos')
             })
             .catch( (error) => console.log(error) )
+        }
             
     }
  
